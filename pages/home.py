@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
-from utils import inject_css, metric_card, section_title, base_layout, TEAM_COLORS, ACCENT
+from utils.styles import inject_css, metric_card, section_title, base_layout, TEAM_COLORS, ACCENT
 
 
 def render(df: pd.DataFrame):
