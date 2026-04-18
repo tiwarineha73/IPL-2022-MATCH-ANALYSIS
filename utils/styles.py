@@ -36,7 +36,8 @@ def inject_css():
     background-color: #EAF4FB;
     font-family: 'Inter', sans-serif;
 }
-[data-testid="stSidebar"] { background-color: #B8D9F0; }
+[data-testid="stSidebar"] { background-color: #B8D9F0; color: #003566 ! important; }
+[dara-testid="stSidebar"] * {color: #003566 !important;}
     [data-testid="stSidebar"] .css-1d391kg { padding-top: 1rem; }
     .metric-card {
         background: linear-gradient(135deg, #1E2130 0%, #252B3B 100%);
