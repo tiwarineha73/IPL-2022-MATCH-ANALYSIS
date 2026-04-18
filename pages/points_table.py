@@ -1,4 +1,4 @@
-import streamlit as st
+7import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
@@ -100,3 +100,4 @@ def render(df: pd.DataFrame):
             columns={"W":"Official W","DataWins":"Dataset W","Match":"✅ Matches"}
         ),
         use_container_width=True, hide_index=True
+)
