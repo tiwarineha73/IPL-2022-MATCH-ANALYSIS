@@ -77,10 +77,18 @@ def render(df: pd.DataFrame):
             mapbox_style="carto-positron",
             size_max=35,
         )
+     fig3 = px.scatter_mapbox(
+            mdf, lat="lat", lon="lon",
+            size="Matches", color="Matches",
+            hover_name="Full",
+            color_continuous_scale="Oranges",
+            zoom=4.2, center={"lat": 21.0, "lon": 78.5},
+            mapbox_style="carto-positron",
+            size_max=35,
+        )
         fig3.update_layout(
             height=480,
             coloraxis_showscale=False,
-            margin=dict(l=0, r=0, t=30, b=0)
         )
         st.plotly_chart(fig3, use_container_width=True)
     else:
