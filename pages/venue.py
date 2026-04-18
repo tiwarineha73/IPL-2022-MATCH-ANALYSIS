@@ -78,11 +78,10 @@ def render(df: pd.DataFrame):
             size_max=35,
         )
         fig3.update_layout(
-    height=480,
-    coloraxis_showscale=False,
-    margin=dict(l=0, r=0, t=30, b=0),
-    font=dict(family="Inter, sans-serif", size=12)
-)
+            height=480,
+            coloraxis_showscale=False,
+            margin=dict(l=0, r=0, t=30, b=0)
+        )
         st.plotly_chart(fig3, use_container_width=True)
     else:
         st.info("Map coordinates could not be matched.")
