@@ -23,7 +23,6 @@ from pages.insights         import render as insights
 df = load_data("IPL_Matches_2022.csv")
 
 # ── Sidebar ──────────────────────────────────────────────────────────
-choice = st.sidebar.radio("Navigate", list(PAGES.keys()))
 st.sidebar.markdown("""
 <div style='text-align:center;padding:10px 0 4px;'>
     <span style='font-size:36px;'>🏏</span><br>
@@ -45,6 +44,7 @@ PAGES = {
     "🔮  Prediction":         prediction,
     "💡  Insights":           insights,
 }
+choice = st.sidebar.radio("Navigate", list(PAGES.keys()))
 
 
 PAGES[choice](df)
