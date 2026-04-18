@@ -45,7 +45,7 @@ PAGES = {
     "💡  Insights":           insights,
 }
 
-pages = st.sidebar.radio("Navigate", list(PAGES.keys()))
+choice = st.sidebar.radio("Navigate", list(PAGES.keys()))
 st.sidebar.markdown("---")
 st.sidebar.caption("74 matches · 10 teams · IPL 2022")
 
