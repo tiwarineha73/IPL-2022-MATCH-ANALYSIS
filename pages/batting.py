@@ -17,7 +17,7 @@ def render(df: pd.DataFrame):
         wm.columns = ["Method","Count"]
         fig = px.pie(wm, names="Method", values="Count",
                      color_discrete_sequence=[ACCENT, ACCENT2],
-                     hole=0.42, template="plotly_dark")
+                     hole=0.42, template="plotly_white")
         fig.update_layout(**base_layout(height=310))
         st.plotly_chart(fig, use_container_width=True)
 
@@ -27,7 +27,7 @@ def render(df: pd.DataFrame):
             df.dropna(subset=["Margin"]),
             x="Margin", color="WonBy",
             color_discrete_sequence=[ACCENT, ACCENT2],
-            nbins=18, barmode="overlay", template="plotly_dark",
+            nbins=18, barmode="overlay", template="plotly_white",
             labels={"Margin":"Margin","WonBy":"Won By"},
         )
         fig2.update_layout(**base_layout(height=310))
@@ -40,7 +40,7 @@ def render(df: pd.DataFrame):
         runs = df[(df["WonBy"]=="Runs")].dropna(subset=["Margin"])
         fig3 = px.histogram(runs, x="Margin", nbins=15,
                             color_discrete_sequence=[ACCENT],
-                            template="plotly_dark")
+                            template="plotly_white")
         fig3.update_layout(**base_layout(height=290))
         st.plotly_chart(fig3, use_container_width=True)
     with cd:
@@ -48,7 +48,7 @@ def render(df: pd.DataFrame):
         wkts = df[(df["WonBy"]=="Wickets")].dropna(subset=["Margin"])
         fig4 = px.histogram(wkts, x="Margin", nbins=10,
                             color_discrete_sequence=[ACCENT2],
-                            template="plotly_dark")
+                            template="plotly_white")
         fig4.update_layout(**base_layout(height=290))
         st.plotly_chart(fig4, use_container_width=True)
 
@@ -71,7 +71,7 @@ def render(df: pd.DataFrame):
     )
     fig6 = px.bar(br, x="WinningTeam", y="Margin",
                   color="WinningTeam", color_discrete_map=TEAM_COLORS,
-                  template="plotly_dark",
+                  template="plotly_white",
                   labels={"WinningTeam":"Team","Margin":"Max Margin (Runs)"})
     fig6.update_layout(**base_layout(height=360), showlegend=False, xaxis_tickangle=-30)
     st.plotly_chart(fig6, use_container_width=True)
@@ -86,7 +86,7 @@ def render(df: pd.DataFrame):
     hm_data["Venue"] = hm_data["Venue"].str.split(",").str[0]
     pivot = hm_data.pivot(index="WinningTeam", columns="Venue", values="Margin").fillna(0)
     fig7 = px.imshow(pivot, color_continuous_scale="Oranges",
-                     template="plotly_dark",
+                     template="plotly_white",
                      labels=dict(color="Avg Margin"))
     fig7.update_layout(**base_layout(height=420), xaxis_tickangle=-30)
     st.plotly_chart(fig7, use_container_width=True)
