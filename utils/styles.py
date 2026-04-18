@@ -57,9 +57,13 @@ def inject_css():
         color: #FAFAFA;
     }
     .match-card {
-        background: #1E2130; border-radius: 10px;
-        padding: 14px 18px; margin-bottom: 10px;
-    }
+    background: #1E2130; border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 10px;
+    color: #FAFAFA;
+}
+.match-card p, .match-card span, .match-card div {
+    color: #FAFAFA !important;
+}
     div[data-testid="stDataFrame"] thead tr th {
         background-color: #1E2130 !important;
         color: #FF6B35 !important;
