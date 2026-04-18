@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-from utils import inject_css, section_title, base_layout, ACCENT, ACCENT2
+from utils.styles import inject_css, section_title, base_layout, ACCENT, ACCENT2
 
 # Exact venue names from dataset → lat/lon
 VENUE_COORDS = {
