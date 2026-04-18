@@ -36,7 +36,7 @@ def render(df: pd.DataFrame):
         opp = r["Team2"] if r.get("WinningTeam") == r["Team1"] else r["Team1"]
         date_str = r["Date"].strftime("%d %b") if pd.notna(r["Date"]) else ""
         st.markdown(f"""
-        <div style='background:#1E2130;border-radius:10px;padding:13px 18px;
+        <div style='background:#FFFFFF;border-radius:10px;padding:13px 18px;
                     margin-bottom:9px;border-left:4px solid {clr};'>
             <span style='font-size:15px;font-weight:700;'>{r["Team1"]} vs {r["Team2"]}</span>
             &nbsp;<span style='color:#8899AA;font-size:12px;'>{date_str} · {r["Venue"].split(",")[0]}</span><br>
@@ -63,7 +63,7 @@ def render(df: pd.DataFrame):
         fig2 = px.histogram(m, x="Margin", color="WonBy",
                             color_discrete_sequence=[ACCENT, ACCENT2],
                             nbins=18, barmode="overlay",
-                            template="plotly_dark")
+                            template="plotly_white")
         fig2.update_layout(**base_layout(height=300))
         st.plotly_chart(fig2, use_container_width=True)
 
@@ -89,7 +89,7 @@ def render(df: pd.DataFrame):
     fig4 = px.bar(te, x="Decision", y="Win %",
                   color="Decision",
                   color_discrete_sequence=[ACCENT, ACCENT2],
-                  text="Win %", template="plotly_dark")
+                  text="Win %", template="plotly_white")
     fig4.update_traces(texttemplate="%{text}%", textposition="outside")
     fig4.update_layout(**base_layout(height=300), showlegend=False, yaxis_range=[0,80])
     st.plotly_chart(fig4, use_container_width=True)
