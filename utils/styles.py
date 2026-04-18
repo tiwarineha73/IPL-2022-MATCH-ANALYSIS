@@ -23,7 +23,9 @@ MUTED    = "#4A6FA5"
 PLOTLY_BASE = dict(
     paper_bgcolor=BG,
     plot_bgcolor=CARD,
-    font=dict(color="#003566", family="Inter, sans-serif", size=12),
+    font=dict(color="#003566", family="Inter, sans-serif", size=12)
+    margin=dict(l=30, t=50, b=40),
+)
 
 
 def inject_css():
