@@ -9,7 +9,6 @@ def render(df: pd.DataFrame):
     inject_css()
     st.markdown("## 🎳 Bowling Analysis")
 
-    # ── Bowl-first (field) efficiency ────────────────────────────────
     section_title("🏏 Bowl-First Win Efficiency by Team")
     field = df[df["TossDecision"] == "field"].copy()
     field_wins = field[field["TossWinner"] == field["WinningTeam"]]
@@ -23,12 +22,11 @@ def render(df: pd.DataFrame):
 
     fig = px.bar(bf, x="TossWinner", y="WinRate",
                  color="TossWinner", color_discrete_map=TEAM_COLORS,
-                 template="plotly_dark",
+                 template="plotly_white",
                  labels={"TossWinner":"Team","WinRate":"Win % (Bowl First)"})
     fig.update_layout(**base_layout(height=370), showlegend=False, xaxis_tickangle=-30)
     st.plotly_chart(fig, use_container_width=True)
 
-    # ── Bat-first (bat) efficiency ───────────────────────────────────
     section_title("🏏 Bat-First Win Efficiency by Team")
     bat = df[df["TossDecision"] == "bat"].copy()
     bat_wins = bat[bat["TossWinner"] == bat["WinningTeam"]]
@@ -42,12 +40,11 @@ def render(df: pd.DataFrame):
     fig2 = px.bar(bb.sort_values("WinRate", ascending=False),
                   x="TossWinner", y="WinRate",
                   color="TossWinner", color_discrete_map=TEAM_COLORS,
-                  template="plotly_dark",
+                  template="plotly_white",
                   labels={"TossWinner":"Team","WinRate":"Win % (Bat First)"})
     fig2.update_layout(**base_layout(height=370), showlegend=False, xaxis_tickangle=-30)
     st.plotly_chart(fig2, use_container_width=True)
 
-    # ── Toss decision monthly trend ──────────────────────────────────
     section_title("🎲 Toss Decision by Month")
     tl = df.dropna(subset=["Date"]).copy()
     tl["Month"] = tl["Date"].dt.strftime("%b")
@@ -59,11 +56,10 @@ def render(df: pd.DataFrame):
     fig3 = px.bar(td, x="Month", y="Count", color="TossDecision",
                   barmode="group",
                   color_discrete_sequence=[ACCENT, ACCENT2],
-                  template="plotly_dark")
+                  template="plotly_white")
     fig3.update_layout(**base_layout(height=330))
     st.plotly_chart(fig3, use_container_width=True)
 
-    # ── Scatter: field first count vs win rate ───────────────────────
     section_title("📈 Bowl-First: Matches Played vs Win Rate")
     fig4 = px.scatter(
         bf, x="FieldFirst", y="WinRate",
