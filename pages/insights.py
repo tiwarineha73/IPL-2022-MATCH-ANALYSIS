@@ -30,7 +30,7 @@ def render(df: pd.DataFrame):
 
     fig = px.imshow(
         corr, color_continuous_scale="RdBu", zmin=-1, zmax=1,
-        template="plotly_dark", text_auto=".2f",
+        template="plotly_white", text_auto=".2f",
     )
     fig.update_layout(**base_layout(height=420, title="Correlation Matrix"))
     st.plotly_chart(fig, use_container_width=True)
@@ -92,7 +92,7 @@ def render(df: pd.DataFrame):
         fig2.update_layout(
             **base_layout(height=500, title="Team Comparison Radar"),
             polar=dict(
-                bgcolor="#1E2130",
+                bgcolor="#FFFFFF",
                 radialaxis=dict(visible=True, color="#8899AA"),
                 angularaxis=dict(color="#8899AA"),
             ),
@@ -125,7 +125,7 @@ def render(df: pd.DataFrame):
     fig4 = px.bar(mpd, x="DateStr", y="Matches",
                   color="Matches",
                   color_discrete_sequence=[ACCENT],
-                  template="plotly_dark")
+                  template="plotly_white")
     fig4.update_layout(**base_layout(height=320), xaxis_tickangle=-45,
                        showlegend=False)
     st.plotly_chart(fig4, use_container_width=True)
@@ -143,7 +143,7 @@ def render(df: pd.DataFrame):
     ]
     for icon_title, text in conclusions:
         st.markdown(f"""
-        <div style='background:#1E2130;border-radius:10px;padding:14px 18px;
+        <div style='background:#FFFFFF;border-radius:10px;padding:14px 18px;
                     margin-bottom:10px;border-left:4px solid #FF6B35;'>
             <b>{icon_title}</b><br>
             <span style='color:#CCCCCC;font-size:14px;'>{text}</span>
