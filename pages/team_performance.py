@@ -3,7 +3,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
 from data_loader import team_stats
-from utils import inject_css, section_title, metric_card, base_layout, TEAM_COLORS, ACCENT, ACCENT2
+from utils.styles import inject_css, section_title, metric_card, base_layout, TEAM_COLORS, ACCENT, ACCENT2
 
 
 def render(df: pd.DataFrame):
