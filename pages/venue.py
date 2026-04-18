@@ -3,20 +3,12 @@ import plotly.express as px
 import pandas as pd
 from utils.styles import inject_css, section_title, base_layout, ACCENT, ACCENT2
 
-VENUE_COORDS = {
-    "Brabourne Stadium, Mumbai":                      (18.9389, 72.8258),
-    "Dr DY Patil Sports Academy, Mumbai":             (19.0636, 73.0198),
-    "Maharashtra Cricket Association Stadium, Pune":  (18.6524, 73.7898),
-    "Wankhede Stadium, Mumbai":                       (18.9443, 72.8249),
-    "Eden Gardens, Kolkata":                          (22.5645, 88.3433),
-    "Narendra Modi Stadium, Ahmedabad":               (23.0905, 72.5967),
-}
-
 
 def render(df: pd.DataFrame):
     inject_css()
     st.markdown("## 🏟️ Venue Analysis")
 
+    # ── Matches per venue ─────────────────────────────────────────────
     section_title("📍 Matches Hosted per Venue")
     vc = df["Venue"].value_counts().reset_index()
     vc.columns = ["Venue", "Matches"]
@@ -30,6 +22,7 @@ def render(df: pd.DataFrame):
                       coloraxis_showscale=False, xaxis_tickangle=-20)
     st.plotly_chart(fig, use_container_width=True)
 
+    # ── Chase vs defend per venue ─────────────────────────────────────
     section_title("⚔️ Chase vs Defend – Win Split by Venue")
     wv = df.dropna(subset=["WinningTeam"]).copy()
 
@@ -54,44 +47,31 @@ def render(df: pd.DataFrame):
     fig2.update_layout(**base_layout(height=380), xaxis_tickangle=-20)
     st.plotly_chart(fig2, use_container_width=True)
 
-    section_title("🗺️ Venue Map (India)")
-    map_rows = []
-    for _, row in vc.iterrows():
-        coords = VENUE_COORDS.get(row["Venue"])
-        if coords:
-            map_rows.append({
-                "Venue":   row["VenueShort"],
-                "Full":    row["Venue"],
-                "Matches": row["Matches"],
-                "lat":     coords[0],
-                "lon":     coords[1],
-            })
+    # ── Venue summary chart (replaces map) ────────────────────────────
+    section_title("🗺️ Venue Overview")
+    venue_summary = vc[["VenueShort", "Matches"]].copy()
+    venue_summary = venue_summary.sort_values("Matches", ascending=False)
 
-    if map_rows:
-        mdf = pd.DataFrame(map_rows)
-        fig3 = px.bar(
-            mdf, x="Venue", y="Matches",
-            color="Matches",
-            color_continuous_scale="Oranges",
-            template="plotly_white",
-            text="Matches",
-            labels={"Venue": "Venue", "Matches": "Matches Hosted"}
-        )
-        fig3.update_traces(textposition="outside")
-        fig3.update_layout(**base_layout(height=380),
-                           coloraxis_showscale=False,
-                           xaxis_tickangle=-20)
-        st.plotly_chart(fig3, use_container_width=True)
-    else:
-        st.info("Map coordinates could not be matched.")
-        st.plotly_chart(fig3, use_container_width=True)
-    else:
-        st.info("Map coordinates could not be matched.")
+    fig3 = px.bar(
+        venue_summary, x="VenueShort", y="Matches",
+        color="Matches",
+        color_continuous_scale="Oranges",
+        template="plotly_white",
+        text="Matches",
+        labels={"VenueShort": "Venue", "Matches": "Matches Hosted"}
+    )
+    fig3.update_traces(textposition="outside")
+    fig3.update_layout(**base_layout(height=380),
+                       coloraxis_showscale=False,
+                       xaxis_tickangle=-20)
+    st.plotly_chart(fig3, use_container_width=True)
 
+    # ── Toss decision by venue ────────────────────────────────────────
     section_title("🎲 Toss Decision by Venue")
     df2 = df.copy()
     df2["VenueShort"] = df2["Venue"].str.split(",").str[0]
     tv = df2.groupby(["VenueShort", "TossDecision"]).size().reset_index(name="Count")
+
     fig4 = px.bar(tv, x="VenueShort", y="Count", color="TossDecision",
                   barmode="group",
                   color_discrete_sequence=[ACCENT, ACCENT2],
