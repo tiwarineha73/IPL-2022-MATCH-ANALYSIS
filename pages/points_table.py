@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-from utils import inject_css, section_title, metric_card, base_layout, TEAM_COLORS, ACCENT, ACCENT2
+from utils.styles import inject_css, section_title, metric_card, base_layout, TEAM_COLORS, ACCENT, ACCENT2
 
 # Official IPL 2022 league-stage points table
 POINTS_DATA = [
