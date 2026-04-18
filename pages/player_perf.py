@@ -20,7 +20,7 @@ def render(df: pd.DataFrame):
     fig = px.bar(
         top_df, x="Player", y="Awards",
         color="Awards", color_continuous_scale="Oranges",
-        template="plotly_dark",
+        template="plotly_white",
     )
     fig.update_layout(**base_layout(height=400),
                       showlegend=False, coloraxis_showscale=False,
@@ -60,7 +60,7 @@ def render(df: pd.DataFrame):
     fig2.update_layout(
         **base_layout(height=450, title="Head-to-Head Radar"),
         polar=dict(
-            bgcolor="#1E2130",
+            bgcolor="#FFFFFF",
             radialaxis=dict(visible=True, color="#8899AA", showticklabels=True),
             angularaxis=dict(color="#8899AA"),
         ),
