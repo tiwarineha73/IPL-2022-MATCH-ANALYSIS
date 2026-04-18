@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import StratifiedKFold, cross_val_score
-from utils import inject_css, section_title, metric_card, base_layout, TEAM_COLORS, ACCENT, ACCENT2
+from utils.style import inject_css, section_title, metric_card, base_layout, TEAM_COLORS, ACCENT, ACCENT2
 
 
 # ── Feature engineering ──────────────────────────────────────────────
