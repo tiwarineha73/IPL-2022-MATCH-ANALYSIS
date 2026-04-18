@@ -54,7 +54,7 @@ def render(df: pd.DataFrame):
             opp = r["Team2"] if r["WinningTeam"] == r["Team1"] else r["Team1"]
             clr = TEAM_COLORS.get(r["WinningTeam"], ACCENT)
             st.markdown(f"""
-            <div style='background:#1E2130;border-radius:9px;padding:11px 15px;
+            <div style='background:#f0f2f6;border-radius:9px;padding:11px 15px;
                         margin-bottom:8px;border-left:3px solid {clr};'>
                 <b>{r['WinningTeam']}</b> beat {opp}<br>
                 <span style='color:#8899AA;font-size:12px;'>
@@ -67,7 +67,7 @@ def render(df: pd.DataFrame):
         potm = df["Player_of_Match"].value_counts().head(8).reset_index()
         potm.columns = ["Player", "Awards"]
         fig2 = px.bar(potm, x="Awards", y="Player", orientation="h",
-                      template="plotly_dark", color_discrete_sequence=[ACCENT])
+                      template="plotly_white", color_discrete_sequence=[ACCENT])
         fig2.update_layout(**base_layout(height=340), showlegend=False)
         fig2.update_yaxes(autorange="reversed")
         st.plotly_chart(fig2, use_container_width=True)
