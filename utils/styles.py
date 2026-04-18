@@ -25,9 +25,7 @@ PLOTLY_BASE = dict(
     paper_bgcolor=BG,
     plot_bgcolor="#FFFFFF",
     font=dict(color="#1A1A2E", family="Inter, sans-serif", size=12),
-    margin=dict(l=30, r=30, t=50, b=40),
 )
-
 
 def inject_css():
     st.markdown("""
