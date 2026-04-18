@@ -78,12 +78,10 @@ def render(df: pd.DataFrame):
             size_max=35,
         )
         fig3.update_layout(
-    paper_bgcolor="#F5F7FA",
-    plot_bgcolor="#FFFFFF",
-    font=dict(color="#1A1A2E", family="Inter, sans-serif", size=12),
     height=480,
     coloraxis_showscale=False,
-    margin=dict(l=0, r=0, t=30, b=0)
+    margin=dict(l=0, r=0, t=30, b=0),
+    font=dict(family="Inter, sans-serif", size=12)
 )
         st.plotly_chart(fig3, use_container_width=True)
     else:
