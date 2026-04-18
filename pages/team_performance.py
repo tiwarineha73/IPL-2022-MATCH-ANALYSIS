@@ -9,40 +9,35 @@ from utils.styles import inject_css, section_title, metric_card, base_layout, TE
 def render(df: pd.DataFrame):
     inject_css()
     st.markdown("## 🛡️ Team Performance")
-
     stats = team_stats(df)
 
-    # ── Season table ─────────────────────────────────────────────────
     section_title("📋 Season Stats Table")
     st.dataframe(stats, use_container_width=True, hide_index=True)
 
     ca, cb = st.columns(2)
     with ca:
-        # Win % bar
         section_title("📊 Win Percentage")
         fig = px.bar(
             stats.sort_values("Win %", ascending=True),
             x="Win %", y="Team", orientation="h",
             color="Team", color_discrete_map=TEAM_COLORS,
-            template="plotly_dark",
+            template="plotly_white",
         )
         fig.update_layout(**base_layout(height=380), showlegend=False)
         st.plotly_chart(fig, use_container_width=True)
 
     with cb:
-        # Wins scatter
         section_title("🔵 Matches vs Wins")
         fig2 = px.scatter(
             stats, x="Matches", y="Wins", text="Team",
             size="Win %", color="Win %",
             color_continuous_scale="Oranges",
-            template="plotly_dark",
+            template="plotly_white",
         )
         fig2.update_traces(textposition="top center", marker_sizemin=10)
         fig2.update_layout(**base_layout(height=380), coloraxis_showscale=False)
         st.plotly_chart(fig2, use_container_width=True)
 
-    # ── Head-to-head ─────────────────────────────────────────────────
     section_title("⚔️ Head-to-Head Battle")
     all_teams = sorted(df["Team1"].unique())
     c1, c2 = st.columns(2)
@@ -76,7 +71,6 @@ def render(df: pd.DataFrame):
         )
         st.plotly_chart(fig3, use_container_width=True)
 
-        # Show individual match results
         st.dataframe(
             h2h[["Date","Team1","Team2","WinningTeam","WonBy","Margin","Player_of_Match"]]
             .assign(Date=lambda d: d["Date"].dt.strftime("%d %b %Y"))
@@ -84,7 +78,6 @@ def render(df: pd.DataFrame):
             use_container_width=True, hide_index=True
         )
 
-    # ── Wins after losing toss ────────────────────────────────────────
     section_title("💪 Wins After Losing the Toss")
     wlt = (
         df[df["WonAfterLosingToss"]]
@@ -92,10 +85,8 @@ def render(df: pd.DataFrame):
         .reset_index(name="Wins After Losing Toss")
         .sort_values("Wins After Losing Toss", ascending=False)
     )
-    fig4 = px.bar(
-        wlt, x="WinningTeam", y="Wins After Losing Toss",
-        color="WinningTeam", color_discrete_map=TEAM_COLORS,
-        template="plotly_dark",
-    )
+    fig4 = px.bar(wlt, x="WinningTeam", y="Wins After Losing Toss",
+                  color="WinningTeam", color_discrete_map=TEAM_COLORS,
+                  template="plotly_white")
     fig4.update_layout(**base_layout(height=360), showlegend=False, xaxis_tickangle=-30)
     st.plotly_chart(fig4, use_container_width=True)
