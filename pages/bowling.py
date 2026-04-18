@@ -69,7 +69,7 @@ def render(df: pd.DataFrame):
         bf, x="FieldFirst", y="WinRate",
         text="TossWinner", size="FieldFirst",
         color="WinRate", color_continuous_scale="RdYlGn",
-        template="plotly_dark",
+        template="plotly_white",
         labels={"FieldFirst":"Times Chose to Field","WinRate":"Win %"},
     )
     fig4.update_traces(textposition="top center", marker_sizemin=10)
