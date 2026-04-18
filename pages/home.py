@@ -11,7 +11,7 @@ def render(df: pd.DataFrame):
     <h1 style='font-size:36px;font-weight:800;margin-bottom:2px;'>
         🏏 IPL 2022 Analytics Dashboard
     </h1>
-    <p style='color:#8899AA;margin-bottom:20px;font-size:15px;'>
+    <p style='color:#6B7280;margin-bottom:20px;font-size:15px;'>
         Broadcaster-quality cricket analytics · 74 matches · 10 teams · Season 2022
     </p>""", unsafe_allow_html=True)
 
@@ -57,7 +57,7 @@ def render(df: pd.DataFrame):
             <div style='background:#f0f2f6;border-radius:9px;padding:11px 15px;
                         margin-bottom:8px;border-left:3px solid {clr};'>
                 <b>{r['WinningTeam']}</b> beat {opp}<br>
-                <span style='color:#8899AA;font-size:12px;'>
+                <span style='color:#6B7280;font-size:12px;'>
                     by {int(r['Margin'])} {r['WonBy']} &nbsp;·&nbsp; {r['Venue'].split(',')[0]}
                 </span>
             </div>""", unsafe_allow_html=True)
