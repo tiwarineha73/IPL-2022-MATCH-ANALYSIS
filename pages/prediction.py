@@ -130,7 +130,7 @@ def render(df: pd.DataFrame):
 
         clr = TEAM_COLORS.get(winner, ACCENT)
         st.markdown(f"""
-        <div style='background:linear-gradient(135deg,#1E2130,#252B3B);
+        <div style='background:linear-gradient(135deg,#FFFFFF,#252B3B);
                     border-radius:14px;padding:24px 28px;border-left:5px solid {clr};
                     margin-top:16px;text-align:center;'>
             <p style='color:#8899AA;font-size:13px;margin:0;'>Predicted Winner</p>
@@ -171,7 +171,7 @@ def render(df: pd.DataFrame):
 
     fig2 = px.bar(fi, x="Importance", y="Feature", orientation="h",
                   color="Importance", color_continuous_scale="Oranges",
-                  template="plotly_dark")
+                  template="plotly_white")
     fig2.update_layout(**base_layout(height=380),
                        showlegend=False, coloraxis_showscale=False)
     st.plotly_chart(fig2, use_container_width=True)
@@ -185,6 +185,6 @@ def render(df: pd.DataFrame):
 
     fig3 = px.bar(wr_df, x="Team", y="WinRate %",
                   color="Team", color_discrete_map=TEAM_COLORS,
-                  template="plotly_dark")
+                  template="plotly_white")
     fig3.update_layout(**base_layout(height=360), showlegend=False, xaxis_tickangle=-30)
     st.plotly_chart(fig3, use_container_width=True)
