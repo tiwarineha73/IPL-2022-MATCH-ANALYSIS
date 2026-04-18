@@ -39,7 +39,7 @@ def render(df: pd.DataFrame):
         <div style='background:#FFFFFF;border-radius:10px;padding:13px 18px;
                     margin-bottom:9px;border-left:4px solid {clr};'>
             <span style='font-size:15px;font-weight:700;'>{r["Team1"]} vs {r["Team2"]}</span>
-            &nbsp;<span style='color:#8899AA;font-size:12px;'>{date_str} · {r["Venue"].split(",")[0]}</span><br>
+            &nbsp;<span style='color:#6B7280;font-size:12px;'>{date_str} · {r["Venue"].split(",")[0]}</span><br>
             🏆 <b>{r.get("WinningTeam","TBD")}</b> won by {int(r["Margin"]) if pd.notna(r["Margin"]) else "?"} {r["WonBy"]}
             &nbsp;·&nbsp; 🌟 {r.get("Player_of_Match","")}
         </div>""", unsafe_allow_html=True)
@@ -53,7 +53,7 @@ def render(df: pd.DataFrame):
         td.columns = ["Decision","Count"]
         fig = px.pie(td, names="Decision", values="Count",
                      color_discrete_sequence=[ACCENT, ACCENT2],
-                     hole=0.42, template="plotly_dark")
+                     hole=0.42, template="plotly_white")
         fig.update_layout(**base_layout(height=300))
         st.plotly_chart(fig, use_container_width=True)
 
@@ -75,7 +75,7 @@ def render(df: pd.DataFrame):
     fig3 = px.bar(ta, x="Result", y="Count",
                   color="Result",
                   color_discrete_sequence=[ACCENT, "#555"],
-                  template="plotly_dark")
+                  template="plotly_white")
     fig3.update_layout(**base_layout(height=320), showlegend=False)
     st.plotly_chart(fig3, use_container_width=True)
 
