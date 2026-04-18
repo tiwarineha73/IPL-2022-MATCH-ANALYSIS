@@ -24,7 +24,7 @@ df = load_data("IPL_Matches_2022.csv")
 
 # ── Sidebar ──────────────────────────────────────────────────────────
 choice = st.sidebar.radio("Navigate", list(PAGES.keys()))
-st.sidebar.markdown(""")
+st.sidebar.markdown("---")
 
 
 PAGES = {
