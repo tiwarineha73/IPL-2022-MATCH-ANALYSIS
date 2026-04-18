@@ -23,8 +23,6 @@ from pages.insights         import render as insights
 df = load_data("IPL_Matches_2022.csv")
 
 # ── Sidebar ──────────────────────────────────────────────────────────
-choice = st.sidebar.radio("Navigate", list(PAGES.keys()))
-st.sidebar.markdown("---")
 PAGES = {
     "🏠  Home":               home,
     "📊  Match Analysis":     match,
@@ -37,6 +35,8 @@ PAGES = {
     "🔮  Prediction":         prediction,
     "💡  Insights":           insights,
 }
+choice = st.sidebar.radio("Navigate", list(PAGES.keys()))
+st.sidebar.markdown("---")
 PAGES[choice](df)
 st.sidebar.markdown("---")
 st.sidebar.caption("74 matches · 10 teams · IPL 2022")
