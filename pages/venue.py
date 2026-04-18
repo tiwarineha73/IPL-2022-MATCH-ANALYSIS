@@ -69,19 +69,21 @@ def render(df: pd.DataFrame):
 
     if map_rows:
         mdf = pd.DataFrame(map_rows)
-        fig3 = px.scatter_mapbox(
-            mdf, lat="lat", lon="lon",
-            size="Matches", color="Matches",
-            hover_name="Full",
+        fig3 = px.bar(
+            mdf, x="Venue", y="Matches",
+            color="Matches",
             color_continuous_scale="Oranges",
-            zoom=4.2, center={"lat": 21.0, "lon": 78.5},
-            mapbox_style="carto-positron",
-            size_max=35,
+            template="plotly_white",
+            text="Matches",
+            labels={"Venue": "Venue", "Matches": "Matches Hosted"}
         )
-        fig3.update_layout(
-            height=480,
-            coloraxis_showscale=False
-        )
+        fig3.update_traces(textposition="outside")
+        fig3.update_layout(**base_layout(height=380),
+                           coloraxis_showscale=False,
+                           xaxis_tickangle=-20)
+        st.plotly_chart(fig3, use_container_width=True)
+    else:
+        st.info("Map coordinates could not be matched.")
         st.plotly_chart(fig3, use_container_width=True)
     else:
         st.info("Map coordinates could not be matched.")
